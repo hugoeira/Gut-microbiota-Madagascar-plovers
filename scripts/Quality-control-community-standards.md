@@ -1,12 +1,22 @@
 # Quality control - community standards workflow
 
 
-
-
-
 ##  Table of Contents
 
-[TOC]
+- [1. Activate Qiime2](#1-activate-qiime2)
+- [2. Import expected taxonomic composition of mock samples](#2-import-expected-taxonomic-composition-of-mock-samples)
+- [2. Get the observed taxonomic composition of mock samples](#2-get-the-observed-taxonomic-composition-of-mock-samples)
+  * [2.1 Import results after filtering steps](#21-import-results-after-filtering-steps)
+  * [2.2  Inspect the taxonomic composition of the community standards (taxa bar plots only for positive controls)](#22--inspect-the-taxonomic-composition-of-the-community-standards--taxa-bar-plots-only-for-positive-controls-)
+- [3. Agglomerate taxa at species level](#3-agglomerate-taxa-at-species-level)
+  * [3.1 Convert sequence counts into relative abundances](#31-convert-sequence-counts-into-relative-abundances)
+- [4. Compare observed and expected taxonomic composition of mock samples](#4-compare-observed-and-expected-taxonomic-composition-of-mock-samples)
+- [5. Feature evaluation results](#5-feature-evaluation-results)
+  * [5.1 Per-level accuracy](#51-per-level-accuracy)
+  * [5.2 Linear Regression between observed and expected abundances](#52-linear-regression-between-observed-and-expected-abundances)
+  * [5.2 False positives: misclassifications](#52-false-positives--misclassifications)
+  * [5.3 False positives: underclassifications](#53-false-positives--underclassifications)
+  * [5.4 False negatives](#54-false-negatives)
 
 ## 1. Activate Qiime2
 
@@ -54,9 +64,7 @@ qiime feature-table summarize --i-table mock-observed.qza --o-visualization mock
 ```python
 qiime taxa barplot --i-table mock-observed.qza --i-taxonomy taxonomy.qza --m-metadata-file plover_metadata.tsv --o-visualization mock-observed-bar-plot.qzv
 ```
-
-![mock-comunity](/home/localadmin/Madagascar-analysis/all-species/Figures/supplementary-figures/mock-comunity.svg)
-
+![mock-comunity](/pics/mock-comunity.svg)
 
 
 ## 3. Agglomerate taxa at species level
@@ -105,7 +113,7 @@ These are used to calculate TAR and TDR as:
 
 ### 5.1 Per-level accuracy
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/Figures/supplementary-figures/level-accuracy.svg" alt="level-accuracy" style="zoom:67%;" />
+![level-accuracy](/pics/level-accuracy.svg)
 
 |      | sample | level | Observed Taxa | Observed / Expected Taxa | TAR         | TDR         | Slope       | Intercept    | r-value     | P value     | Std Err     | Bray-Curtis | Jaccard     | r-squared   |
 | ---- | ------ | ----- | ------------- | ------------------------ | ----------- | ----------- | ----------- | ------------ | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
@@ -121,7 +129,7 @@ These are used to calculate TAR and TDR as:
 
 ### 5.2 Linear Regression between observed and expected abundances
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/Figures/supplementary-figures/composition_regression.svg" alt="composition_regression" style="zoom:67%;" />
+![composition_regression](/pics/composition_regression.svg)
 
 ### 5.2 False positives: misclassifications
 
