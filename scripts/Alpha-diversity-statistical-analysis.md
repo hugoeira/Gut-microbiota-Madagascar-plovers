@@ -1,15 +1,84 @@
 # Alpha diversity statistical analysis
 
-
-
 ## Table of Contents
 
-[TOC]
-
+  * [Read in the data](#read-in-the-data)
+- [A) Alpha diversity - adults and juveniles](#a--alpha-diversity---adults-and-juveniles)
+  * [1. Model shannon diversity index](#1-model-shannon-diversity-index)
+      - [1.1 Check Normality](#11-check-normality)
+      - [1.2  Model Diagnostics](#12--model-diagnostics)
+      - [1.3 Model Summary](#13-model-summary)
+      - [1.4 Bootstrap model](#14-bootstrap-model)
+      - [1.5 Marginal and conditional R-squared](#15-marginal-and-conditional-r-squared)
+      - [1.6 Plot model effects](#16-plot-model-effects)
+      - [1.7 Significance of random effects](#17-significance-of-random-effects)
+  * [2. Model Faith phylogenetic diversity](#2-model-faith-phylogenetic-diversity)
+      - [2.1 Check Normality](#21-check-normality)
+      - [2.2  Model Diagnostics](#22--model-diagnostics)
+      - [2.3 Model Summary](#23-model-summary)
+      - [2.4 Bootstrap model](#24-bootstrap-model)
+      - [2.5 Marginal and conditional R-squared](#25-marginal-and-conditional-r-squared)
+      - [2.6 Plot model effects](#26-plot-model-effects)
+      - [2.7 Significance of random effects](#27-significance-of-random-effects)
+  * [3. Model n° of observed ASV's](#3-model-n--of-observed-asv-s)
+      - [3.1 Check Normality](#31-check-normality)
+      - [3.2  Model Diagnostics](#32--model-diagnostics)
+      - [3.3 Model Summary](#33-model-summary)
+      - [3.4 Bootstrap model](#34-bootstrap-model)
+      - [3.5 Marginal and conditional R-squared](#35-marginal-and-conditional-r-squared)
+      - [3.6 Plot model effects](#36-plot-model-effects)
+      - [3.7 Significance of random effects](#37-significance-of-random-effects)
+- [B) Alpha diversity - adults](#b--alpha-diversity---adults)
+  * [1. Model shannon diversity index](#1-model-shannon-diversity-index-1)
+      - [1.1 Check Normality](#11-check-normality-1)
+      - [1.2  Model Diagnostics](#12--model-diagnostics-1)
+      - [1.3 Model Summary](#13-model-summary-1)
+      - [1.4 Bootstrap model](#14-bootstrap-model-1)
+      - [1.5 Marginal and conditional R-squared](#15-marginal-and-conditional-r-squared-1)
+      - [1.6 Plot model effects](#16-plot-model-effects-1)
+      - [1.7 Significance of random effects](#17-significance-of-random-effects-1)
+  * [2. Model Faith phylogenetic diversity](#2-model-faith-phylogenetic-diversity-1)
+      - [2.1 Check Normality](#21-check-normality-1)
+      - [2.2  Model Diagnostics](#22--model-diagnostics-1)
+      - [2.3 Model Summary](#23-model-summary-1)
+      - [2.4 Bootstrap model](#24-bootstrap-model-1)
+      - [2.5 Marginal and conditional R-squared](#25-marginal-and-conditional-r-squared-1)
+      - [2.6 Plot model effects](#26-plot-model-effects-1)
+      - [2.7 Significance of random effects](#27-significance-of-random-effects-1)
+  * [3. Model n° of observed ASV's](#3-model-n--of-observed-asv-s-1)
+      - [3.1 Check Normality](#31-check-normality-1)
+      - [3.2  Model Diagnostics](#32--model-diagnostics-1)
+      - [3.3 Model Summary](#33-model-summary-1)
+      - [3.4 Bootstrap model](#34-bootstrap-model-1)
+      - [3.5 Marginal and conditional R-squared](#35-marginal-and-conditional-r-squared-1)
+      - [3.6 Plot model effects](#36-plot-model-effects-1)
+      - [3.7 Significance of random effects](#37-significance-of-random-effects-1)
+- [C) Alpha diversity - juveniles](#c--alpha-diversity---juveniles)
+  * [1. Model shannon diversity index](#1-model-shannon-diversity-index-2)
+      - [1.1 Check Normality](#11-check-normality-2)
+      - [1.2  Model Diagnostics](#12--model-diagnostics-2)
+      - [1.3 Model Summary](#13-model-summary-2)
+      - [1.4 Bootstrap model](#14-bootstrap-model-2)
+      - [1.5 Marginal and conditional R-squared](#15-marginal-and-conditional-r-squared-2)
+      - [1.6 Plot model effects](#16-plot-model-effects-2)
+      - [1.7 Significance of random effects](#17-significance-of-random-effects-2)
+  * [2. Model Faith phylogenetic diversity](#2-model-faith-phylogenetic-diversity-2)
+      - [2.1 Check Normality](#21-check-normality-2)
+      - [2.2  Model Diagnostics](#22--model-diagnostics-2)
+      - [2.3 Model Summary](#23-model-summary-2)
+      - [2.4 Bootstrap model](#24-bootstrap-model-2)
+      - [2.5 Marginal and conditional R-squared](#25-marginal-and-conditional-r-squared-2)
+      - [2.6 Plot model effects](#26-plot-model-effects-2)
+      - [2.7 Significance of random effects](#27-significance-of-random-effects-2)
+  * [3. Model n° of observed ASV's](#3-model-n--of-observed-asv-s-2)
+      - [3.1 Check Normality](#31-check-normality-2)
+      - [3.2  Model Diagnostics](#32--model-diagnostics-2)
+      - [3.3 Model Summary](#33-model-summary-2)
+      - [3.4 Bootstrap model](#34-bootstrap-model-2)
+      - [3.5 Marginal and conditional R-squared](#35-marginal-and-conditional-r-squared-2)
+      - [3.6 Plot model effects](#36-plot-model-effects-2)
+      - [3.7 Significance of random effects](#37-significance-of-random-effects-2)
 ------
-
-
-
 
 
 ## Read in the data
@@ -94,15 +163,12 @@ model_shannon <- lmer(std_shannon ~ species + age + sex + year + (1|nest),data =
 ```
 
 
-
 #### 1.1 Check Normality
 
 ```R
 > check_normality(model_shannon)
 Warning: Non-normality of residuals detected (p = 0.005).
 ```
-
-
 
 #### 1.2  Model Diagnostics
 
@@ -115,7 +181,8 @@ residuals_shannon <- resid(model_shannon)
 qqPlot(residuals_shannon, envelope = 0.95, main = "Std. Shannon QQ plot")
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/shannon-predicted-distribution.svg" alt="shannon-predicted-distribution" style="zoom:67%;" />
+<img src="/pics/shannon-predicted-distribution.svg" alt="shannon-predicted-distribution.svg" width="50%">
+
 
 #### 1.3 Model Summary
 
@@ -148,7 +215,6 @@ year2022             0.06620    0.18850 130.00000   0.351   0.7260
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
-
 
 
 #### 1.4 Bootstrap model
@@ -196,7 +262,6 @@ metadata$species <- relevel(metadata2$species, ref = "Athoracicus")
 ```
 
 
-
 #### 1.5 Marginal and conditional R-squared
 
 ```R
@@ -205,15 +270,13 @@ metadata$species <- relevel(metadata2$species, ref = "Athoracicus")
 [1,] 0.1103745 0.1103745
 ```
 
-
-
 #### 1.6 Plot model effects
 
 ```R
 > plot(allEffects(model_shannon))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/shannon-effects.svg" alt="shannon-effects" style="zoom:67%;" />
+<img src="/pics/shannon-effects.svg" alt="shannon-effects.svg" width="50%">
 
 #### 1.7 Significance of random effects
 
@@ -227,9 +290,6 @@ std_shannon ~ species + sex + age + year + (1 | nest)
 <none>        8 -189.69 395.39                  
 (1 | nest)    7 -189.69 393.39   0  1          1
 ```
-
-
-
 
 
 ## 2. Model Faith phylogenetic diversity
@@ -257,14 +317,12 @@ model_faith <- lmer(sqrt_faith ~ species + sex + year + (1|nest),data = metadata
 ```
 
 
-
 #### 2.1 Check Normality
 
 ```R
 > check_normality(model_faith)
 Warning: Non-normality of residuals detected (p = 0.035).
 ```
-
 
 
 #### 2.2  Model Diagnostics
@@ -278,7 +336,8 @@ residuals_faith <- resid(model_faith)
 qqPlot(residuals_faith, envelope = 0.95, main = "Sqrt Faith PD QQ plot")
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/faith-predicted-distribution.svg" alt="faith-predicted-distribution" style="zoom:67%;" />
+<img src="/pics/faith-predicted-distribution.svg" alt="faith-predicted-distribution.svg" width="50%">
+
 
 #### 2.3 Model Summary
 
@@ -311,7 +370,6 @@ year2022             0.2778     0.2833  40.2536   0.981    0.333
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
-
 
 
 #### 2.4 Bootstrap model
@@ -358,8 +416,6 @@ metadata$species <- relevel(metadata2$species, ref = "Athoracicus")
 6 year2022              0.278 -0.274 0.831 norm   0.95
 ```
 
-
-
 #### 2.5 Marginal and conditional R-squared
 
 ```R
@@ -369,14 +425,14 @@ metadata$species <- relevel(metadata2$species, ref = "Athoracicus")
 ```
 
 
-
 #### 2.6 Plot model effects
 
 ```R
 > plot(allEffects(model_faith))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/faith-effects.svg" alt="faith-effects" style="zoom:67%;" />
+<img src="/pics/faith-effects.svg" alt="faith-effects.svg" width="50%">
+
 
 #### 2.7 Significance of random effects
 
@@ -390,9 +446,6 @@ sqrt_faith ~ species + sex + age + year + (1 | nest)
 <none>        8 -235.54 487.08                      
 (1 | nest)    7 -235.71 485.42 0.34169  1     0.5589
 ```
-
-
-
 
 
 ## 3. Model n° of observed ASV's
@@ -423,16 +476,12 @@ model_asv <- lmer(log_asv ~ species + age + sex + year + (1|nest),data = metadat
 
 ```
 
-
-
 #### 3.1 Check Normality
 
 ```R
 > check_normality(model_asv)
 Warning: Non-normality of residuals detected (p = 0.001).
 ```
-
-
 
 #### 3.2  Model Diagnostics
 
@@ -445,7 +494,8 @@ residuals_asv <- resid(model_asv1)
 qqPlot(residuals_asv, envelope = 0.95, main = "Log ASV QQ plot")
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/asv-predicted-distribution.svg" alt="asv-predicted-distribution" style="zoom:67%;" />
+<img src="/pics/asv-predicted-distribution.svg" alt="asv-predicted-distribution.svg" width="50%">
+
 
 #### 3.3 Model Summary
 
@@ -478,8 +528,6 @@ year2022             0.07048    0.04687  39.30007   1.504    0.141
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
-
-
 
 #### 3.4 Bootstrap model
 
@@ -526,8 +574,6 @@ metadata$species <- relevel(metadata$species, ref = "Athoracicus")
 6 year2022             0.0705 -0.0209 0.164  norm   0.95
 ```
 
-
-
 #### 3.5 Marginal and conditional R-squared
 
 ```R
@@ -536,15 +582,13 @@ metadata$species <- relevel(metadata$species, ref = "Athoracicus")
 [1,] 0.1810203 0.2092595
 ```
 
-
-
 #### 3.6 Plot model effects
 
 ```R
 plot(allEffects(model_asv))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/asv-effects.svg" alt="asv-effects" style="zoom:67%;" />
+<img src="/pics/asv-effects.svg" alt="asv-effects.svg" width="50%">
 
 #### 3.7 Significance of random effects
 
@@ -560,14 +604,7 @@ log_asv ~ species + sex + age + year + (1 | nest)
 ```
 
 
-
-
-
-
-
 # B) Alpha diversity - adults
-
-
 
 ```R
 # Subset the dataset to include only adults
@@ -585,13 +622,11 @@ OK: No outliers detected.
 ```
 
 
-
 ## 1. Model shannon diversity index 
 
 ```R
 model_shannon_adults <- lmer(std_shannon ~ species + sex + year + (1|nest),data = metadata_adults)
 ```
-
 
 
 #### 1.1 Check Normality
@@ -609,7 +644,8 @@ OK: residuals appear as normally distributed (p = 0.078).
 plot(check_distribution(model_shannon_adults))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/shannon-adults-predicted-distribution.svg" alt="shannon-predicted-distribution" style="zoom:67%;" />
+<img src="/pics/shannon-adults-predicted-distribution.svg" alt="shannon-adults-predicted-distribution.svg" width="50%">
+
 
 #### 1.3 Model Summary
 
@@ -703,8 +739,7 @@ metadata_adults$species <- relevel(metadata_adults$species, ref = "Athoracicus")
 plot(allEffects(model_shannon_adults))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/shannon-adults-effects.svg" alt="shannon-adults-effects" style="zoom:67%;" />
-
+<img src="/pics/shannon-adults-effects.svg" alt="shannon-adults-effects.svg" width="50%">
 
 
 #### 1.7 Significance of random effects
@@ -758,7 +793,7 @@ OK: residuals appear as normally distributed (p = 0.174).
 plot(check_distribution(model_faith_adults))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/faith-adults-predicted-distribution.svg" alt="shannon-predicted-distribution" style="zoom:80%;" />
+<img src="/pics/faith-adults-predicted-distribution.svg" alt="faith-adults-predicted-distribution.svg" width="50%">
 
 #### 2.3 Model Summary
 
@@ -792,8 +827,6 @@ year2022            0.26410    0.30700 40.05682   0.860  0.39476
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 ```
-
-
 
 #### 2.4 Bootstrap model
 
@@ -838,7 +871,6 @@ metadata_adults$species <- relevel(metadata_adults$species, ref = "Athoracicus")
 ```
 
 
-
 #### 2.5 Marginal and conditional R-squared
 
 ```R
@@ -848,14 +880,14 @@ metadata_adults$species <- relevel(metadata_adults$species, ref = "Athoracicus")
 ```
 
 
-
 #### 2.6 Plot model effects
 
 ```R
 plot(allEffects(model_faith_adults))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/faith-adults-effects.svg" alt="shannon-adults-effects" style="zoom:67%;" />
+<img src="/pics/faith-adults-effects.svg" alt="faith-adults-effects.svg" width="50%">
+
 
 #### 2.7 Significance of random effects
 
@@ -872,9 +904,6 @@ std_faith ~ species + sex + year + (1 | nest)
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
-
-
-
 
 
 ## 3. Model n° of observed ASV's
@@ -907,8 +936,6 @@ model_asv_adults <- lmer(log_asv ~ species + sex + year + (1|nest),data = metada
 
 ```
 
-
-
 #### 3.1 Check Normality
 
 ```R
@@ -916,15 +943,14 @@ model_asv_adults <- lmer(log_asv ~ species + sex + year + (1|nest),data = metada
 OK: residuals appear as normally distributed (p = 0.461).
 ```
 
-
-
 #### 3.2  Model Diagnostics
 
 ```R
 plot(check_distribution(model_asv_adults))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/asv-adults-predicted-distribution.svg" alt="shannon-predicted-distribution" style="zoom:80%;" />
+<img src="/pics/asv-adults-predicted-distribution.svg" alt="asv-adults-predicted-distribution.svg" width="50%">
+
 
 #### 3.3 Model Summary
 
@@ -958,8 +984,6 @@ year2022            0.11758    0.07393 35.22181   1.590   0.1207
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-
-
 #### 3.4 Bootstrap model
 
 ```R
@@ -989,7 +1013,6 @@ Number of resamples: 10000
 
 
 
-
 # Note: In order to compute the confidence intervals for the remaining comparison (A. thoracicus vs. A. pecuarius)change the reference level of the metadata to Athoracicus and repeat the analysis.
 metadata_adults$species <- relevel(metadata_adults$species, ref = "Athoracicus")
 
@@ -1005,8 +1028,6 @@ metadata_adults$species <- relevel(metadata_adults$species, ref = "Athoracicus")
 
 ```
 
-
-
 #### 3.5 Marginal and conditional R-squared
 
 ```R
@@ -1015,15 +1036,13 @@ metadata_adults$species <- relevel(metadata_adults$species, ref = "Athoracicus")
 [1,] 0.142139 0.4899323
 ```
 
-
-
 #### 3.6 Plot model effects
 
 ```R
 plot(allEffects(model_asv_adults))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/asv-adults-effects.svg" alt="shannon-adults-effects" style="zoom:67%;" />
+<img src="/pics/asv-adults-effects.svg" alt="asv-adults-effects.svg" width="50%">
 
 #### 3.7 Significance of random effects
 
@@ -1040,14 +1059,7 @@ log_asv ~ species + sex + year + (1 | nest)
 ```
 
 
-
-
-
-
-
 # C) Alpha diversity - juveniles
-
-
 
 ```R
 # Subset the dataset to include only adults
@@ -1065,14 +1077,11 @@ OK: No outliers detected.
 ```
 
 
-
 ## 1. Model shannon diversity index 
 
 ```R
 model_shannon_juv<- lmer(std_shannon ~ species + sex + year + (1|nest),data = metadata_juv)
 ```
-
-
 
 #### 1.1 Check Normality
 
@@ -1081,15 +1090,14 @@ model_shannon_juv<- lmer(std_shannon ~ species + sex + year + (1|nest),data = me
 OK: residuals appear as normally distributed (p = 0.064).
 ```
 
-
-
 #### 1.2  Model Diagnostics
 
 ```R
 plot(check_distribution(model_shannon_juv))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/shannon-juv-predicted-distribution.svg" alt="shannon-predicted-distribution" style="zoom:67%;" />
+<img src="/pics/shannon-juv-predicted-distribution.svg" alt="shannon-juv-predicted-distribution.svg" width="50%">
+
 
 #### 1.3 Model Summary
 
@@ -1120,8 +1128,6 @@ speciesCthoracicus  -0.5960     0.3748  -1.590
 sexM                 0.1721     0.2331   0.738
 year2022            -0.1546     0.2683  -0.576
 ```
-
-
 
 #### 1.4 Bootstrap model
 
@@ -1165,8 +1171,6 @@ metadata_juv$species <- relevel(metadata_juv$species, ref = "Athoracicus")
 5 year2022             -0.155 -0.678  0.373 norm   0.95
 ```
 
-
-
 #### 1.5 Marginal and conditional R-squared
 
 ```R
@@ -1175,15 +1179,14 @@ metadata_juv$species <- relevel(metadata_juv$species, ref = "Athoracicus")
 [1,] 0.1719504 0.1782489
 ```
 
-
-
 #### 1.6 Plot model effects
 
 ```R
 plot(allEffects(model_shannon_juv))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/shannon-juv-effects.svg" alt="shannon-adults-effects" style="zoom:67%;" />
+<img src="/pics/shannon-juv-effects.svg" alt="shannon-juv-effects.svg" width="50%">
+
 
 #### 1.7 Significance of random effects
 
@@ -1197,9 +1200,6 @@ std_shannon ~ species + sex + year + (1 | nest)
 <none>        7 -97.955 209.91                         
 (1 | nest)    6 -97.956 207.91 0.00056251  1     0.9811
 ```
-
-
-
 
 
 ## 2. Model Faith phylogenetic diversity
@@ -1230,8 +1230,6 @@ model_faith_juv <- lmer(sqrt_faith ~ species + sex + year + (1|nest),data = meta
 
 ```
 
-
-
 #### 2.1 Check Normality
 
 ```R
@@ -1239,15 +1237,14 @@ model_faith_juv <- lmer(sqrt_faith ~ species + sex + year + (1|nest),data = meta
 OK: residuals appear as normally distributed (p = 0.174).
 ```
 
-
-
 #### 2.2  Model Diagnostics
 
 ```R
 plot(check_distribution(model_faith_juv))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/faith-juv-predicted-distribution.svg" alt="shannon-predicted-distribution" style="zoom:67%;" />
+<img src="/pics/faith-juv-predicted-distribution.svg" alt="faith-juv-predicted-distribution.svg" width="50%">
+
 
 #### 2.3 Model Summary
 
@@ -1280,8 +1277,6 @@ year2022             0.1761     0.3613 66.0000   0.487 0.627682
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
-
-
 
 #### 2.4 Bootstrap model
 
@@ -1325,8 +1320,6 @@ metadata_juv$species <- relevel(metadata_juv$species, ref = "Athoracicus")
 
 ```
 
-
-
 #### 2.5 Marginal and conditional R-squared
 
 ```R
@@ -1335,15 +1328,13 @@ metadata_juv$species <- relevel(metadata_juv$species, ref = "Athoracicus")
 [1,] 0.2844682 0.2844682
 ```
 
-
-
 #### 2.6 Plot model effects
 
 ```R
 plot(allEffects(model_faith_juv))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/faith-juv-effects.svg" alt="shannon-adults-effects" style="zoom:67%;" />
+<img src="/pics/faith-juv-effects.svg" alt="faith-juv-effects.svg" width="50%">
 
 #### 2.7 Significance of random effects
 
@@ -1357,9 +1348,6 @@ sqrt_faith ~ species + sex + year + (1 | nest)
 <none>        7 -117.76 249.52                  
 (1 | nest)    6 -117.76 247.52    0   1        1
 ```
-
-
-
 
 
 ## 3. Model n° of observed ASV's
@@ -1392,8 +1380,6 @@ model_asv_juv <- lmer(log_asv ~ species + sex + year + (1|nest),data = metadata_
 
 ```
 
-
-
 #### 3.1 Check Normality
 
 ```R
@@ -1401,15 +1387,12 @@ model_asv_juv <- lmer(log_asv ~ species + sex + year + (1|nest),data = metadata_
 OK: residuals appear as normally distributed (p = 0.121).
 ```
 
-
-
 #### 3.2  Model Diagnostics
 
 ```R
 plot(check_distribution(model_asv_juv))
 ```
-
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/asv-juv-predicted-distribution.svg" alt="shannon-predicted-distribution" style="zoom:67%;" />
+<img src="/pics/asv-juv-predicted-distribution.svg" alt="asv-juv-predicted-distribution.svg" width="50%">
 
 #### 3.3 Model Summary
 
@@ -1442,8 +1425,6 @@ year2022            0.03192    0.06230 66.00000   0.512 0.610115
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
-
-
 
 #### 3.4 Bootstrap model
 
@@ -1487,8 +1468,6 @@ metadata_juv$species <- relevel(metadata_juv$species, ref = "Athoracicus")
 5 year2022             0.0319 -0.0900 0.154 norm   0.95
 ```
 
-
-
 #### 3.5 Marginal and conditional R-squared
 
 ```R
@@ -1497,15 +1476,14 @@ metadata_juv$species <- relevel(metadata_juv$species, ref = "Athoracicus")
 [1,] 0.256622 0.256622
 ```
 
-
-
 #### 3.6 Plot model effects
 
 ```R
 plot(allEffects(model_asv_juv))
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/alpha/plots/asv-juv-effects.svg" alt="shannon-adults-effects" style="zoom:67%;" />
+<img src="/pics/asv-juv-effects.svg" alt="asv-juv-effects.svg" width="50%">
+
 
 #### 3.7 Significance of random effects
 
@@ -1520,4 +1498,3 @@ log_asv ~ species + sex + year + (1 | nest)
 <none>        7 -1.7412 17.482                        
 (1 | nest)    6 -1.7412 15.482    5.862e-14  1          1         
 ```
-
