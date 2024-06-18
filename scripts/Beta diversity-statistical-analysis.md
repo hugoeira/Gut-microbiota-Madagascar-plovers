@@ -1,15 +1,38 @@
 # Beta Diversity Statistical Analysis
 
-
-
-[TOC]
+- [A) PERMANOVA](#a--permanova)
+  * [1. Read in the data](#1-read-in-the-data)
+  * [2. CSS tranformation](#2-css-tranformation)
+  * [3. Perform PERMANOVA on Bray-Curtis dissimilarities and Weighted-UniFrac distances](#3-perform-permanova-on-bray-curtis-dissimilarities-and-weighted-unifrac-distances)
+  * [4. Perform PERMANOVA on Bray-Curtis dissimilarities and Weighted-UniFrac distances - Adult individuals only](#4-perform-permanova-on-bray-curtis-dissimilarities-and-weighted-unifrac-distances---adult-individuals-only)
+  * [5. Perform PERMANOVA on Bray-Curtis dissimilarities and Weighted-UniFrac distances - Juveniles individuals only](#5-perform-permanova-on-bray-curtis-dissimilarities-and-weighted-unifrac-distances---juveniles-individuals-only)
+- [B) Model pairwise comparisons](#b--model-pairwise-comparisons)
+  * [1. Read in the data](#1-read-in-the-data-1)
+  * [3. Bray-Curtis and Weighted UniFrac Models Using brms](#3-bray-curtis-and-weighted-unifrac-models-using-brms)
+    + [3.1 Model](#31-model)
+    + [3.2 Compare distribution of response variable to distributions of predicted response variable values](#32-compare-distribution-of-response-variable-to-distributions-of-predicted-response-variable-values)
+    + [3.3  Model diagnostics](#33--model-diagnostics)
+    + [3.4 Plot model results for species comparison](#34-plot-model-results-for-species-comparison)
+    + [3.5. Plot model results for remaining predictors](#35-plot-model-results-for-remaining-predictors)
+  * [4. Bray-Curtis and Weighted UniFrac Models Using brms: Adult Individuals](#4-bray-curtis-and-weighted-unifrac-models-using-brms--adult-individuals)
+    + [4.1 Model](#41-model)
+    + [4.2 Compare distribution of response variable to distributions of predicted response variable values](#42-compare-distribution-of-response-variable-to-distributions-of-predicted-response-variable-values)
+    + [4.3  Model diagnostics](#43--model-diagnostics)
+    + [4.4 Plot model results for species comparisson](#44-plot-model-results-for-species-comparisson)
+    + [4.5. Plot model results for remaining predictors](#45-plot-model-results-for-remaining-predictors)
+  * [5. Bray-Curtis and Weighted UniFrac Models Using brms: Juvenile Individuals](#5-bray-curtis-and-weighted-unifrac-models-using-brms--juvenile-individuals)
+    + [5.1 Model](#51-model)
+    + [5.2 Compare distribution of response variable to distributions of predicted response variable values](#52-compare-distribution-of-response-variable-to-distributions-of-predicted-response-variable-values)
+    + [5.3  Model diagnostics](#53--model-diagnostics)
+    + [5.4 Plot model results for species comparison](#54-plot-model-results-for-species-comparison)
+    + [5.5. Plot model results for remaining predictors](#55-plot-model-results-for-remaining-predictors)
+- [C) Spacial distance and compositional differences](#c--spacial-distance-and-compositional-differences)
 
 ------
 
 
 
 ## A) PERMANOVA
-
 
 
 ### 1. Read in the data
@@ -714,8 +737,7 @@ pp_check(model_bc, ndraws = 100)
 pp_check(model_wu, ndraws = 100)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/all-models/diagnostics/bc-wu_distribution.svg" alt="bc-wu_distribution" style="zoom:50%;" />
-
+<img src="/pics/bc-wu_distribution.svg" alt="bc-wu_distribution.svg" width="50%">
 
 
 #### 3.3  Model diagnostics
@@ -725,8 +747,7 @@ pp_check(model_wu, ndraws = 100)
 plot(model_bc)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/all-models/diagnostics/bc-diagnostics.svg" alt="bc-diagnostics" style="zoom:67%;" />
-
+<img src="/pics/bc-diagnostics.svg" alt="bc-diagnostics.svg" width="50%">
 
 
 ```R
@@ -734,8 +755,7 @@ plot(model_bc)
 plot(model_wu)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/all-models/diagnostics/model_wu_diagnostics.svg" alt="model_wu_diagnostics" style="zoom:67%;" />
-
+<img src="/pics/model_wu_diagnostics.svg" alt="model_wu_diagnostics.svg" width="50%">
 
 
 #### 3.4 Plot model results for species comparison
@@ -773,7 +793,6 @@ plot(effect_species)[[1]] + theme_classic()+
 ```
 
 
-
 #### 3.5. Plot model results for remaining predictors
 
 ```R
@@ -796,7 +815,6 @@ plot_wu <- plot1 + theme_classic() + geom_vline(xintercept = 0, linetype="dotted
   theme(text = element_text(family = "Arial"))
 plot_wu
 ```
-
 
 
 ### 4. Bray-Curtis and Weighted UniFrac Models Using brms: Adult Individuals
@@ -956,7 +974,6 @@ Hypothesis Tests for class b:
 ```
 
 
-
 #### 4.2 Compare distribution of response variable to distributions of predicted response variable values
 
 ```R
@@ -965,7 +982,8 @@ pp_check(model_bc_adults, ndraws = 100)
 pp_check(model_wu_adults, ndraws = 100)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/age-models/diagnostics/adults-distribution.svg" alt="adults-distribution" style="zoom:67%;" />
+<img src="/pics/adults-distribution.svg" alt="adults-distribution.svg" width="50%">
+
 
 #### 4.3  Model diagnostics
 
@@ -974,7 +992,8 @@ pp_check(model_wu_adults, ndraws = 100)
 plot(model_bc_adults)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/age-models/diagnostics/bc-adults-diagnostics.svg" alt="bc-adults-diagnostics" style="zoom: 67%;" />
+<img src="/pics/bc-adults-diagnostics.svg" alt="bc-adults-diagnostics.svg" width="50%">
+
 
 ```R
 # WU model diagnostics
@@ -982,7 +1001,8 @@ plot(model_bc_adults)
 plot(model_wu_adults)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/age-models/diagnostics/wu-adults-diagnostics.svg" alt="wu-adults-diagnostics" style="zoom:67%;" />
+<img src="/pics/wu-adults-diagnostics.svg" alt="wu-adults-diagnostics.svg" width="50%">
+
 
 #### 4.4 Plot model results for species comparisson
 
@@ -1045,11 +1065,6 @@ plot_wu <- plot1 + theme_classic() + geom_vline(xintercept = 0, linetype="dotted
   theme(text = element_text(family = "Arial"))
 plot_wu
 ```
-
-
-
-
-
 
 
 ### 5. Bray-Curtis and Weighted UniFrac Models Using brms: Juvenile Individuals
@@ -1209,7 +1224,6 @@ Hypothesis Tests for class b:
 ```
 
 
-
 #### 5.2 Compare distribution of response variable to distributions of predicted response variable values
 
 ```R
@@ -1218,7 +1232,7 @@ pp_check(model_bc_juv, ndraws = 100)
 pp_check(model_wu_juv, ndraws = 100)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/age-models/diagnostics/juv-distribution.svg" alt="juv-distribution" style="zoom:67%;" />
+<img src="/pics/juv-distribution.svg" alt="juv-distribution.svg" width="50%">
 
 
 
@@ -1229,14 +1243,16 @@ pp_check(model_wu_juv, ndraws = 100)
 plot(model_bc_juv)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/age-models/diagnostics/bc-juv-diagnostics.svg" alt="bc-juv-diagnostics" style="zoom:67%;" />
+<img src="/pics/bc-juv-diagnostics.svg" alt="bc-juv-diagnostics.svg" width="50%">
+
 
 ```R
 # WU model diagnostics
 plot(model_wu_juv)
 ```
 
-<img src="/home/localadmin/Madagascar-analysis/all-species/beta/dyadic-dataset/age-models/diagnostics/wu-juv-dianostics.svg" alt="wu-juv-dianostics" style="zoom:67%;" />
+<img src="/pics/wu-juv-dianostics.svg" alt="wu-juv-dianostics.svg" width="50%">
+
 
 #### 5.4 Plot model results for species comparison
 
@@ -1274,7 +1290,6 @@ plot(effect_species)[[1]] + theme_classic()+
 ```
 
 
-
 #### 5.5. Plot model results for remaining predictors
 
 ```R
@@ -1299,9 +1314,6 @@ plot_wu_juv <- plot1 + theme_classic() + geom_vline(xintercept = 0, linetype="do
   theme(text = element_text(family = "Arial"))
 plot_wu_juv
 ```
-
-
-
 
 
 ## C) Spacial distance and compositional differences
