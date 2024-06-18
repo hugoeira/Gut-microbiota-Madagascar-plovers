@@ -1,1 +1,11 @@
 # Gut-microbiota-Madagascar-plovers
+
+Data and scripts for the manuscript: **The gut microbiota of three avian species living in sympatry**
+
+## Abstract
+
+**Background**: Evolutionary divergence and genetic variation are often linked to differences in microbial community structure and diversity, with distinct species carrying unique microbiota. While environmental factors and diet heavily influence gut microbial communities, host species contributions are harder to quantify. Sympatry within a taxon provides a unique context to study species differences without the confounding effects of habitat and dietary differences. This study hence compares and contrasts three sympatric plover species: the widespread Kittlitz’s and white-fronted plovers (Anarhynchus pecuarius and A. marginatus), and the endemic and vulnerable Madagascar plover (A. thoracicus).
+
+**Results**: Our findings reveal no significant differences in beta diversity (composition) in gut microbiota among the three species. However, A. thoracicus showed higher intraspecific compositional similarity (less pairwise distances) than the other two species; this pattern was especially pronounced among juveniles. Microbial alpha diversity varied significantly among the three species, being highest in A. pecuarius, intermediate in A. marginatus and lowest in the endemic A. thoracicus. This was particularly evident among juveniles with adults showing similar patterns. Geographical distance did not significantly affect the composition of the gut microbiota, but relatedness did.
+
+**Conclusion**: While patterns of microbial diversity vary across species, the absence of compositional differences suggests that habitat and diet strongly influence the gut microbiota.  This is likely enhanced by the precocial and ground-dwelling nature of plovers, which may facilitate the horizontal transmission of microbes from the environment. We hypothesise that gut microbiota diversity reflects foremost the ecological pool of microbiota which subsequently can be modified by host-specific dispersal ability, and genetic diversity. The reduced microbial and genetic diversity of the endemic species may hinder its ability to adapt to environmental changes, highlighting the need for increased conservation efforts for the vulnerable A. thoracicus.
