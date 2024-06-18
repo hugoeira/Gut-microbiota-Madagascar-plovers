@@ -1,11 +1,15 @@
 # Differential Abundant Analysis
 
-
-
-[TOC]
+- [1. Read in the data](#1-read-in-the-data)
+- [2. Differential abundant analysis - combined dataset](#2-differential-abundant-analysis---combined-dataset)
+  * [2.1 Differential abundant taxa between species](#21-differential-abundant-taxa-between-species)
+- [3. Differential abundant analysis  - Adults](#3-differential-abundant-analysis----adults)
+  * [3.1 Differential abundant taxa between years](#31-differential-abundant-taxa-between-years)
+- [4. Differential abundance analysis  - Juveniles](#4-differential-abundance-analysis----juveniles)
+  * [4.1 Differential abundant taxa between species](#41-differential-abundant-taxa-between-species)
+  * [4.2 Plot differential abundant taxa](#42-plot-differential-abundant-taxa)
 
 ------
-
 
 
 ## 1. Read in the data
@@ -44,7 +48,6 @@ ps <- prune_taxa(taxa_sums(otu_table(ps)) > 1, ps) # remove singletons
 
 summarize_phyloseq(ps)
 ```
-
 
 
 ## 2. Differential abundant analysis - combined dataset
@@ -94,7 +97,6 @@ results_all2 <- Maaslin2(input_data     = asv_table_genus,
 ```
 
 
-
 ### 2.1 Differential abundant taxa between species
 
 | Comparison                  | Kingdom    | Phylum           | Class                | Order                               | Family                     | Genus                | Coefficient | Std.Err | N    | N.not.0 | pval     | qval     |
@@ -114,7 +116,6 @@ results_all2 <- Maaslin2(input_data     = asv_table_genus,
 | **Amarginatus-Apecuarius**  | Bacteria   | Firmicutes       | Negativicutes        | Veillonellales-Selenomonadales      | Veillonellaceae            | Megasphaera          | -2.60       | 0.52    | 136  | 65      | 1.13E-05 | 3.06E-02 |
 |                             |            |                  |                      |                                     |                            |                      |             |         |      |         |          |          |
 | **Juveniles-Adults**        | Bacteria   | Proteobacteria   | Gammaproteobacteria  | Enterobacterales                    | Succinivibrionaceae        | Anaerobiospirillum   | -2.61       | 0.51    | 136  | 104     | 1.74E-06 | 4.70E-03 |
-
 
 
 
@@ -167,7 +168,6 @@ results_genus_adults2 <- Maaslin2(input_data     = table_genus_adults,
 # No DAA taxa detected between species
 #Detected one diferential abundant taxa between years
 ```
-
 
 
 ### 3.1 Differential abundant taxa between years
