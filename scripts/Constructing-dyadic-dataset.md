@@ -3,11 +3,20 @@
 Based on the workflow described here  https://github.com/nuorenarra/Analysing-dyadic-data-with-brms 
 
 
-
 ## Table of Contents
 
-[TOC]
-
+- [1. Read in the data](#1-read-in-the-data)
+- [2. Construct matrices to create the dayadic dataset](#2-construct-matrices-to-create-the-dayadic-dataset)
+  * [2.1 Microbiome dissimilarity/distance matrices (BC, WU)](#21-microbiome-dissimilarity-distance-matrices--bc--wu-)
+  * [2.2 Sex combination  matrix](#22-sex-combination--matrix)
+  * [2.3 Species combination matrix](#23-species-combination-matrix)
+  * [2.4 Age combination matrix](#24-age-combination-matrix)
+  * [2.5 Nest sharing  matrix (nest similarity)](#25-nest-sharing--matrix--nest-similarity-)
+  * [2.6 Year similarity matrix](#26-year-similarity-matrix)
+  * [2.7 Distance (meters) matrix between individuals](#27-distance--meters--matrix-between-individuals)
+- [3. Unravel matrices into one dyadic data frame](#3-unravel-matrices-into-one-dyadic-data-frame)
+  * [3.1 Build dyadic dataset](#31-build-dyadic-dataset)
+  * [3.2 Add  Sample ID combinations to the data set](#32-add--sample-id-combinations-to-the-data-set)
 ------
 
 
