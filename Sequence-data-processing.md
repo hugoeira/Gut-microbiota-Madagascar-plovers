@@ -4,7 +4,35 @@
 
 ## Table of Contents
 
-[TOC]
+- [1.  Activate Qiime2](#1--activate-qiime2)
+- [2. Import sequences](#2-import-sequences)
+- [3. Visualize quality plots](#3-visualize-quality-plots)
+- [4. Run dada2](#4-run-dada2)
+  * [4.1. DADA2 results](#41-dada2-results)
+- [5. Taxonomy assignment](#5-taxonomy-assignment)
+  * [5.1. Taxonomy visualisation](#51-taxonomy-visualisation)
+- [6. Exit qiime2](#6-exit-qiime2)
+- [7. In R run decontam](#7-in-r-run-decontam)
+  * [7.1. Read in the data](#71-read-in-the-data)
+  * [7.2. Run decontam](#72-run-decontam)
+  * [7.3. Export feature table as biom file](#73-export-feature-table-as-biom-file)
+- [8. Import biom table from R to qiime2](#8-import-biom-table-from-r-to-qiime2)
+- [9. Remove negative controls from dataset](#9-remove-negative-controls-from-dataset)
+- [10. Taxonomy based filtering](#10-taxonomy-based-filtering)
+- [11. Filter unique features](#11-filter-unique-features)
+- [12. Filter samples with less than 500 reads](#12-filter-samples-with-less-than-500-reads)
+- [13. Filter based on abundance (0.001%) and prevalence (1% of samples)](#13-filter-based-on-abundance--0001---and-prevalence--1--of-samples-)
+- [14. Extract community standard (in order to perform quality control steps)](#14-extract-community-standard--in-order-to-perform-quality-control-steps-)
+- [15. Remove false positives detected in the community standard](#15-remove-false-positives-detected-in-the-community-standard)
+- [16. Import final table to qiime2](#16-import-final-table-to-qiime2)
+- [17. Filter representative sequences](#17-filter-representative-sequences)
+- [18. Building a phylogenetic tree](#18-building-a-phylogenetic-tree)
+- [19. Rarefaction curves](#19-rarefaction-curves)
+- [20. Taxa bar plots](#20-taxa-bar-plots)
+  * [20.1. Plot core phylum (present in 95% of samples)](#201-plot-core-phylum--present-in-95--of-samples-)
+  * [20.2. Plot core families (present in 95% of samples)](#202-plot-core-families--present-in-95--of-samples-)
+- [21. Calculate alpha diversity metrics and rarefy the data-set](#21-calculate-alpha-diversity-metrics-and-rarefy-the-data-set)
+- [22. Filter samples with less than 27378 reads (unrarefied table for beta analysis)](#22-filter-samples-with-less-than-27378-reads--unrarefied-table-for-beta-analysis-)
 
 ------
 
